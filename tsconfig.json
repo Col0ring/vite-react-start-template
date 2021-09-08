@@ -20,5 +20,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "exclude": ["node_modules", "dist", "public"]
+  "exclude": ["node_modules", "dist", "dist-ssr", "public"]
 }

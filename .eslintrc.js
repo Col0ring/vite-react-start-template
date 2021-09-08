@@ -1,6 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const prettierConfig = require('./prettier.config')
-
 const __DEV__ = process.env.NODE_ENV === 'development'
 
 module.exports = {
@@ -10,17 +8,9 @@ module.exports = {
     node: true,
   },
   root: true,
-  parser: '@typescript-eslint/parser',
-  // 开启静态检查
-  parserOptions: {
-    tsconfigRootDir: __dirname,
-    project: ['./tsconfig.json'],
-  },
-  plugins: ['@typescript-eslint', 'jest'],
+  plugins: ['jest'],
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:eslint-comments/recommended',
     'plugin:import/recommended',
     // ts 支持
@@ -37,9 +27,6 @@ module.exports = {
   rules: {
     // prettier
     'prettier/prettier': ['warn', prettierConfig],
-    // ts
-    '@typescript-eslint/no-var-requires': 'warn',
-    '@typescript-eslint/no-shadow': 'error',
     // js
     'no-shadow': 'error',
     'no-unused-vars': 'warn',
@@ -54,7 +41,25 @@ module.exports = {
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
+      // 只针对 ts 用 typescript-eslint
+      parser: '@typescript-eslint/parser',
+      // 开启静态检查
+      parserOptions: {
+        tsconfigRootDir: __dirname,
+        ecmaFeatures: {
+          jsx: true,
+        },
+        project: ['./tsconfig.json'],
+      },
+      plugins: ['@typescript-eslint'],
+      extends: [
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+      ],
       rules: {
+        // ts
+        '@typescript-eslint/no-var-requires': 'warn',
+        '@typescript-eslint/no-shadow': 'error',
         // use @typescript-eslint/no-shadow
         'no-shadow': 'off',
         // use @typescript-eslint/no-unused-vars
