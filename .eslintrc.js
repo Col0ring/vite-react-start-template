@@ -33,7 +33,6 @@ module.exports = {
     'no-debugger': __DEV__ ? 'off' : 'warn', // 调试
     'no-console': __DEV__ ? 'off' : 'warn', // 日志打印
     'require-yield': 'warn', // 不允许 generate 函数中没有 yield
-
     // react
     'react/self-closing-comp': 'error',
   },
@@ -60,10 +59,6 @@ module.exports = {
         // ts
         '@typescript-eslint/no-var-requires': 'warn',
         '@typescript-eslint/no-shadow': 'error',
-        // use @typescript-eslint/no-shadow
-        'no-shadow': 'off',
-        // use @typescript-eslint/no-unused-vars
-        'no-unused-vars': 'off',
       },
     },
   ],
